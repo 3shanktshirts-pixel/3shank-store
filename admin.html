@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>لوحة تحكم عشانك • إدارة المنتجات والتخفيضات</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Cairo', sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 2rem;
+      color: #1e293b;
+    }
+    .container { max-width: 900px; margin: 0 auto; }
+    .card {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-radius: 40px;
+      padding: 2.5rem;
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+    }
+    h2, h3 { display: flex; align-items: center; gap: 10px; color: #2a2a72; }
+    .form-group { margin-bottom: 1.8rem; }
+    label { font-weight: 700; display: block; margin-bottom: 0.6rem; color: #2a2a72; }
+    input, textarea, select {
+      width: 100%;
+      padding: 14px 18px;
+      border: 2px solid #e2e8f0;
+      border-radius: 50px;
+      font-family: 'Cairo', sans-serif;
+      font-size: 1rem;
+      background: white;
+      transition: 0.2s;
+    }
+    input:focus, textarea:focus, select:focus {
+      outline: none;
+      border-color: #667eea;
+      box-shadow: 0 0 0 4px rgba(102,126,234,0.2);
+    }
+    .btn {
+      background: linear-gradient(145deg, #2a2a72, #4a4a9a);
+      color: white;
+      border: none;
+      padding: 14px 28px;
+      border-radius: 50px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 8px 20px rgba(42,42,114,0.3);
+    }
+    .btn-outline {
+      background: white;
+      color: #2a2a72;
+      border: 2px solid #2a2a72;
+      box-shadow: none;
+    }
+    .preview-thumbs {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 1.2rem;
+    }
+    .thumb {
+      width: 90px;
+      height: 90px;
+      border-radius: 20px;
+      object-fit: cover;
+      border: 3px solid white;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+    }
+    .product-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem;
+      background: white;
+      border-radius: 20px;
+      margin-bottom: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    }
+    .product-info { display: flex; align-items: center; gap: 1rem; }
+    .product-info img { width: 60px; height: 60px; border-radius: 16px; object-fit: cover; }
+    .hidden { display: none !important; }
+    .flex-between { display: flex; justify-content: space-between; align-items: center; }
+    hr {
+      margin: 2rem 0;
+      border: none;
+      height: 2px;
+      background: linear-gradient(to right, transparent, #cbd5e1, transparent);
+    }
+    .discount-indicator { color: #10b981; font-weight: 700; margin-right: 10px; }
+    .price-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .hint {
+      font-size: 0.85rem;
+      color: #64748b;
+      margin-top: 6px;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="card">
+    <h2><i class="fas fa-cog"></i> لوحة تحكم عشانك</h2>
+    <p style="margin-bottom:2rem;">إدارة المنتجات والتخفيضات</p>
+
+    <!-- نموذج تسجيل الدخول -->
+    <div id="loginSection">
+      <div class="form-group">
+        <label>كلمة المرور</label>
+        <input type="password" id="password" placeholder="admin123">
+      </div>
+      <button class="btn" id="loginBtn">دخول</button>
+      <p style="margin-top:1rem;">admin123</p>
+    </div>
+
+    <!-- لوحة التحكم الرئيسية -->
+    <div id="adminPanel" class="hidden">
+      <div class="flex-between">
+        <h3><i class="fas fa-plus-circle"></i> إضافة منتج جديد</h3>
+        <button class="btn-outline btn" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> خروج</button>
+      </div>
+
+      <form id="productForm">
+        <div class="form-group">
+          <label>اسم المنتج</label>
+          <input type="text" id="prodName" placeholder="مثال: تيشيرت قطن كلاسيك" required>
+        </div>
+
+        <div class="form-group">
+          <label>الفئة</label>
+          <select id="prodCategory">
+            <option value="men">رجالي</option>
+            <option value="youth">شبابي</option>
+          </select>
+        </div>
+
+        <!-- حقول السعر: قبل وبعد الخصم -->
+        <div class="price-row">
+          <div class="form-group">
+            <label>السعر الأصلي (قبل الخصم)</label>
+            <input type="number" id="prodOriginalPrice" step="0.01" placeholder="اتركه فارغاً إذا لا يوجد خصم">
+            <div class="hint">إذا أردت خصماً، اكتب السعر الأصلي</div>
+          </div>
+          <div class="form-group">
+            <label>السعر بعد الخصم</label>
+            <input type="number" id="prodPrice" step="0.01" placeholder="السعر النهائي للبيع" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>الوصف</label>
+          <textarea id="prodDesc" rows="2" placeholder="وصف مختصر للمنتج..."></textarea>
+        </div>
+
+        <div class="form-group">
+          <label>المقاسات (مفصولة بفاصلة)</label>
+          <input type="text" id="prodSizes" value="S, M, L, XL" placeholder="مثال: S, M, L, XL">
+        </div>
+
+        <div class="form-group">
+          <label>الأعمار (مفصولة بفاصلة)</label>
+          <input type="text" id="prodAges" value="15-18, 18+" placeholder="مثال: 15-18, 18+">
+        </div>
+
+        <div class="form-group">
+          <label><i class="fas fa-images"></i> صور المنتج</label>
+          <input type="file" id="imageUpload" accept="image/*" multiple>
+          <div id="imagePreview" class="preview-thumbs"></div>
+        </div>
+
+        <button type="submit" class="btn" style="width:100%">
+          <i class="fas fa-save"></i> حفظ المنتج
+        </button>
+      </form>
+
+      <hr>
+
+      <h3>المنتجات الحالية</h3>
+      <div id="productList"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function(){
+    "use strict";
+
+    let products = [];
+    let uploadedImages = [];
+    const PASSWORD = 'admin123';
+
+    // ---------- تحميل المنتجات ----------
+    async function loadProducts() {
+      try {
+        const res = await fetch('products.json');
+        const json = await res.json();
+        const stored = localStorage.getItem('ashanak_products');
+        const local = stored ? JSON.parse(stored) : [];
+        const merged = [...json];
+        local.forEach(lp => {
+          const i = merged.findIndex(p => p.id === lp.id);
+          if (i >= 0) merged[i] = lp;
+          else merged.push(lp);
+        });
+        products = merged;
+      } catch {
+        const s = localStorage.getItem('ashanak_products');
+        products = s ? JSON.parse(s) : [];
+      }
+      renderProductList();
+    }
+
+    function saveProducts() {
+      localStorage.setItem('ashanak_products', JSON.stringify(products));
+    }
+
+    // ---------- عرض قائمة المنتجات ----------
+    function renderProductList() {
+      const list = document.getElementById('productList');
+      if (products.length === 0) {
+        list.innerHTML = '<p style="text-align:center;padding:20px;color:#888;">لا توجد منتجات</p>';
+        return;
+      }
+
+      list.innerHTML = products.map(p => {
+        const hasDiscount = p.originalPrice && p.originalPrice > p.price;
+        return `
+          <div class="product-item">
+            <div class="product-info">
+              <img src="${p.images[0]}" alt="${p.name}">
+              <div>
+                <strong>${p.name}</strong> (${p.category === 'men' ? 'رجالي' : 'شبابي'})<br>
+                ${hasDiscount ? 
+                  `<span style="text-decoration:line-through;color:#94a3b8;">${p.originalPrice} ر.س</span> 
+                   <span class="discount-indicator">${p.price} ر.س</span>` : 
+                  `<span>${p.price} ر.س</span>`
+                }
+              </div>
+            </div>
+            <button class="btn-outline" onclick="deleteProduct('${p.id}')">
+              <i class="fas fa-trash"></i>
+            </button>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // حذف منتج
+    window.deleteProduct = (id) => {
+      if (confirm('هل أنت متأكد من حذف هذا المنتج؟')) {
+        products = products.filter(p => p.id !== id);
+        saveProducts();
+        renderProductList();
+      }
+    };
+
+    // ---------- معاينة الصور ----------
+    document.getElementById('imageUpload').addEventListener('change', function(e) {
+      const files = Array.from(e.target.files);
+      uploadedImages = [];
+      const preview = document.getElementById('imagePreview');
+      preview.innerHTML = '';
+
+      files.forEach(file => {
+        const reader = new FileReader();
+        reader.onload = ev => {
+          uploadedImages.push(ev.target.result);
+          const img = document.createElement('img');
+          img.src = ev.target.result;
+          img.className = 'thumb';
+          preview.appendChild(img);
+        };
+        reader.readAsDataURL(file);
+      });
+    });
+
+    // ---------- إرسال النموذج ----------
+    document.getElementById('productForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      if (uploadedImages.length === 0) {
+        alert('الرجاء رفع صورة واحدة على الأقل');
+        return;
+      }
+
+      const name = document.getElementById('prodName').value.trim();
+      const category = document.getElementById('prodCategory').value;
+      const price = parseFloat(document.getElementById('prodPrice').value);
+      const originalPriceInput = document.getElementById('prodOriginalPrice').value;
+      const originalPrice = originalPriceInput ? parseFloat(originalPriceInput) : null;
+      const description = document.getElementById('prodDesc').value.trim();
+      const sizes = document.getElementById('prodSizes').value.split(',').map(s => s.trim());
+      const ages = document.getElementById('prodAges').value.split(',').map(a => a.trim());
+
+      // التحقق من صحة الخصم
+      if (originalPrice && originalPrice <= price) {
+        alert('السعر الأصلي يجب أن يكون أكبر من السعر بعد الخصم');
+        return;
+      }
+
+      const newProduct = {
+        id: Date.now().toString(),
+        name,
+        category,
+        price,
+        description,
+        sizes,
+        ages,
+        images: uploadedImages
+      };
+
+      if (originalPrice && originalPrice > price) {
+        newProduct.originalPrice = originalPrice;
+      }
+
+      products.push(newProduct);
+      saveProducts();
+      renderProductList();
+
+      // إعادة تعيين النموذج
+      document.getElementById('productForm').reset();
+      document.getElementById('imagePreview').innerHTML = '';
+      uploadedImages = [];
+
+      alert('✅ تم إضافة المنتج بنجاح!');
+    });
+
+    // ---------- تسجيل الدخول ----------
+    document.getElementById('loginBtn').addEventListener('click', () => {
+      if (document.getElementById('password').value === PASSWORD) {
+        document.getElementById('loginSection').classList.add('hidden');
+        document.getElementById('adminPanel').classList.remove('hidden');
+        sessionStorage.setItem('admin_logged', 'true');
+        loadProducts();
+      } else {
+        alert('❌ كلمة المرور غير صحيحة');
+      }
+    });
+
+    document.getElementById('logoutBtn').addEventListener('click', () => {
+      document.getElementById('loginSection').classList.remove('hidden');
+      document.getElementById('adminPanel').classList.add('hidden');
+      document.getElementById('password').value = '';
+      sessionStorage.removeItem('admin_logged');
+    });
+
+    // التحقق من حالة الدخول
+    if (sessionStorage.getItem('admin_logged') === 'true') {
+      document.getElementById('loginSection').classList.add('hidden');
+      document.getElementById('adminPanel').classList.remove('hidden');
+      loadProducts();
+    }
+
+    // دعم زر Enter في كلمة المرور
+    document.getElementById('password').addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') document.getElementById('loginBtn').click();
+    });
+  })();
+</script>
+</body>
+</html>

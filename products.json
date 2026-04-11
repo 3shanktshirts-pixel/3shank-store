@@ -1,0 +1,66 @@
+[
+  {
+    "id": "1",
+    "name": "تيشيرت أساسي أبيض",
+    "originalPrice": 99,
+    "price": 79,
+    "description": "تيشيرت قطني مريح للاستخدام اليومي. جودة عالية.",
+    "sizes": ["S", "M", "L", "XL"],
+    "ages": ["15-18", "18+"],
+    "category": "men",
+    "images": ["https://placehold.co/600x600/f5f5f5/333?text=White+Tee"]
+  },
+  {
+    "id": "2",
+    "name": "تيشيرت جرافيك أزرق",
+    "originalPrice": 159,
+    "price": 129,
+    "description": "تصميم عصري وجودة عالية. قماش ناعم.",
+    "sizes": ["M", "L", "XL"],
+    "ages": ["12-16", "16+"],
+    "category": "men",
+    "images": ["https://placehold.co/600x600/f5f5f5/333?text=Blue+Tee"]
+  },
+  {
+    "id": "3",
+    "name": "تيشيرت بولو رجالي",
+    "price": 149,
+    "description": "أنيق ومناسب للدوام. خامة بوليستر قطن.",
+    "sizes": ["M", "L", "XL"],
+    "ages": ["18+"],
+    "category": "men",
+    "images": ["https://placehold.co/600x600/f5f5f5/333?text=Polo+Tee"]
+  },
+  {
+    "id": "4",
+    "name": "تيشيرت رياضي أسود",
+    "originalPrice": 129,
+    "price": 99,
+    "description": "مثالي للتمارين والجري. قماش يمتص العرق.",
+    "sizes": ["S", "M", "L", "XL", "XXL"],
+    "ages": ["16-18", "18+"],
+    "category": "men",
+    "images": ["https://placehold.co/600x600/f5f5f5/333?text=Sports+Tee"]
+  },
+  {
+    "id": "5",
+    "name": "تيشيرت أوفر سايز رمادي",
+    "price": 139,
+    "description": "مقاس واسع وعصري. يناسب الإطلالات الكاجوال.",
+    "sizes": ["L", "XL", "XXL"],
+    "ages": ["18+"],
+    "category": "men",
+    "images": ["https://placehold.co/600x600/f5f5f5/333?text=Oversize+Tee"]
+  },
+  {
+    "id": "6",
+    "name": "تيشيرت قطن عضوي",
+    "originalPrice": 119,
+    "price": 89,
+    "description": "قطن عضوي 100%، مريح وصديق للبيئة.",
+    "sizes": ["S", "M", "L", "XL"],
+    "ages": ["15-18", "18+"],
+    "category": "men",
+    "images": ["https://placehold.co/600x600/f5f5f5/333?text=Organic+Tee"]
+  }
+]
