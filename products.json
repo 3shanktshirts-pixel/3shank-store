@@ -2,65 +2,168 @@
   {
     "id": "1",
     "name": "تيشيرت أساسي أبيض",
-    "originalPrice": 99,
-    "price": 79,
-    "description": "تيشيرت قطني مريح للاستخدام اليومي. جودة عالية.",
+    "originalPrice": 150,
+    "price": 120,
+    "description": "تيشيرت قطني مصري 100%، ملمس ناعم وأناقة خالدة.",
     "sizes": ["S", "M", "L", "XL"],
     "ages": ["15-18", "18+"],
     "category": "men",
-    "images": ["https://placehold.co/600x600/f5f5f5/333?text=White+Tee"]
+    "images": [
+      "https://images.pexels.com/photos/428338/pexels-photo-428338.jpeg?auto=compress&cs=tinysrgb&w=600"
+    ],
+    "stock": 20,
+    "active": true,
+    "isNew": false,
+    "isBestseller": true
   },
   {
     "id": "2",
-    "name": "تيشيرت جرافيك أزرق",
-    "originalPrice": 159,
-    "price": 129,
-    "description": "تصميم عصري وجودة عالية. قماش ناعم.",
-    "sizes": ["M", "L", "XL"],
-    "ages": ["12-16", "16+"],
-    "category": "men",
-    "images": ["https://placehold.co/600x600/f5f5f5/333?text=Blue+Tee"]
+    "name": "بلوزة نسائية أنيقة",
+    "price": 280,
+    "originalPrice": 350,
+    "description": "تصميم عصري بقصة فضفاضة، مناسب لجميع المناسبات.",
+    "sizes": ["S", "M", "L"],
+    "ages": ["18+"],
+    "category": "women",
+    "images": [
+      "https://images.pexels.com/photos/2065195/pexels-photo-2065195.jpeg?auto=compress&cs=tinysrgb&w=600"
+    ],
+    "stock": 12,
+    "active": true,
+    "isNew": true,
+    "isBestseller": false
   },
   {
     "id": "3",
-    "name": "تيشيرت بولو رجالي",
-    "price": 149,
-    "description": "أنيق ومناسب للدوام. خامة بوليستر قطن.",
-    "sizes": ["M", "L", "XL"],
-    "ages": ["18+"],
+    "name": "تيشيرت جرافيك شبابي",
+    "price": 180,
+    "description": "طباعة عالية الجودة مقاومة للغسيل، مظهر جريء.",
+    "sizes": ["M", "L", "XL", "XXL"],
+    "ages": ["16-20", "20+"],
     "category": "men",
-    "images": ["https://placehold.co/600x600/f5f5f5/333?text=Polo+Tee"]
+    "images": [
+      "https://images.pexels.com/photos/1043474/pexels-photo-1043474.jpeg?auto=compress&cs=tinysrgb&w=600"
+    ],
+    "stock": 8,
+    "active": true,
+    "isNew": false,
+    "isBestseller": false
   },
   {
     "id": "4",
-    "name": "تيشيرت رياضي أسود",
-    "originalPrice": 129,
-    "price": 99,
-    "description": "مثالي للتمارين والجري. قماش يمتص العرق.",
-    "sizes": ["S", "M", "L", "XL", "XXL"],
-    "ages": ["16-18", "18+"],
-    "category": "men",
-    "images": ["https://placehold.co/600x600/f5f5f5/333?text=Sports+Tee"]
+    "name": "فستان سهرة أسود",
+    "price": 420,
+    "originalPrice": 500,
+    "description": "فستان أنيق بقصة ضيقة، مثالي للسهرات والمناسبات الخاصة.",
+    "sizes": ["S", "M", "L"],
+    "ages": ["18+"],
+    "category": "women",
+    "images": [
+      "https://images.pexels.com/photos/1926769/pexels-photo-1926769.jpeg?auto=compress&cs=tinysrgb&w=600"
+    ],
+    "stock": 5,
+    "active": true,
+    "isNew": true,
+    "isBestseller": true
   },
   {
     "id": "5",
-    "name": "تيشيرت أوفر سايز رمادي",
-    "price": 139,
-    "description": "مقاس واسع وعصري. يناسب الإطلالات الكاجوال.",
-    "sizes": ["L", "XL", "XXL"],
+    "name": "قميص رجالي كلاسيك",
+    "price": 320,
+    "originalPrice": 380,
+    "description": "قميص قطني بأزرار، مناسب للعمل والمناسبات الرسمية.",
+    "sizes": ["M", "L", "XL", "XXL"],
     "ages": ["18+"],
     "category": "men",
-    "images": ["https://placehold.co/600x600/f5f5f5/333?text=Oversize+Tee"]
+    "images": [
+      "https://images.pexels.com/photos/297933/pexels-photo-297933.jpeg?auto=compress&cs=tinysrgb&w=600"
+    ],
+    "stock": 15,
+    "active": true,
+    "isNew": false,
+    "isBestseller": false
   },
   {
     "id": "6",
-    "name": "تيشيرت قطن عضوي",
-    "originalPrice": 119,
-    "price": 89,
-    "description": "قطن عضوي 100%، مريح وصديق للبيئة.",
-    "sizes": ["S", "M", "L", "XL"],
+    "name": "جاكت جينز رجالي",
+    "price": 550,
+    "originalPrice": 650,
+    "description": "جاكت جينز عصري، مبطن خفيف ومناسب لجميع الفصول.",
+    "sizes": ["M", "L", "XL"],
+    "ages": ["18+"],
+    "category": "men",
+    "images": [
+      "https://images.pexels.com/photos/1598507/pexels-photo-1598507.jpeg?auto=compress&cs=tinysrgb&w=600"
+    ],
+    "stock": 10,
+    "active": true,
+    "isNew": true,
+    "isBestseller": false
+  },
+  {
+    "id": "7",
+    "name": "بلوزة شيفون مزينة",
+    "price": 240,
+    "originalPrice": 300,
+    "description": "بلوزة شيفون خفيفة بأكمام واسعة، مثالية للخروجات.",
+    "sizes": ["S", "M", "L"],
+    "ages": ["18+"],
+    "category": "women",
+    "images": [
+      "https://images.pexels.com/photos/985635/pexels-photo-985635.jpeg?auto=compress&cs=tinysrgb&w=600"
+    ],
+    "stock": 18,
+    "active": true,
+    "isNew": false,
+    "isBestseller": true
+  },
+  {
+    "id": "8",
+    "name": "طقم رياضي رجالي",
+    "price": 390,
+    "description": "طقم رياضي كامل (تيشيرت + شورت) مصنوع من أقمشة تقنية.",
+    "sizes": ["M", "L", "XL", "XXL"],
+    "ages": ["16-20", "20+"],
+    "category": "men",
+    "images": [
+      "https://images.pexels.com/photos/2291003/pexels-photo-2291003.jpeg?auto=compress&cs=tinysrgb&w=600"
+    ],
+    "stock": 14,
+    "active": true,
+    "isNew": true,
+    "isBestseller": false
+  },
+  {
+    "id": "9",
+    "name": "تنورة أنيقة بقصة A",
+    "price": 190,
+    "description": "تنورة قطنية مريحة بقصة واسعة، تناسب الإطلالات الكاجوال.",
+    "sizes": ["S", "M", "L"],
+    "ages": ["18+"],
+    "category": "women",
+    "images": [
+      "https://images.pexels.com/photos/2065200/pexels-photo-2065200.jpeg?auto=compress&cs=tinysrgb&w=600"
+    ],
+    "stock": 22,
+    "active": true,
+    "isNew": false,
+    "isBestseller": false
+  },
+  {
+    "id": "10",
+    "name": "سويت شيرت رجالي",
+    "price": 210,
+    "originalPrice": 260,
+    "description": "سويت شيرت قطن ثقيل، مريح ودافئ بتصميم عصري.",
+    "sizes": ["M", "L", "XL", "XXL"],
     "ages": ["15-18", "18+"],
     "category": "men",
-    "images": ["https://placehold.co/600x600/f5f5f5/333?text=Organic+Tee"]
+    "images": [
+      "https://images.pexels.com/photos/6311294/pexels-photo-6311294.jpeg?auto=compress&cs=tinysrgb&w=600"
+    ],
+    "stock": 25,
+    "active": true,
+    "isNew": true,
+    "isBestseller": false
   }
 ]
