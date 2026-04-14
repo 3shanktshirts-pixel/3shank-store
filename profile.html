@@ -1,1 +1,116 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>الملف الشخصي · عشانك</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif; background: #f2f5f9; color: #0a1929;
+      padding: 20px; min-height: 100vh; display: flex; align-items: center; justify-content: center;
+    }
+    .glass-card {
+      background: rgba(255,255,255,0.6); backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px);
+      border-radius: 40px; padding: 32px; max-width: 550px; width: 100%;
+      border: 0.5px solid rgba(255,255,255,0.8); box-shadow: 0 20px 40px -10px rgba(10,25,41,0.1);
+    }
+    .profile-header { display: flex; align-items: center; gap: 24px; margin-bottom: 32px; }
+    .avatar-large { width: 90px; height: 90px; background: #0a1929; border-radius: 45px; display: flex; align-items: center; justify-content: center; color: white; font-size: 36px; font-weight: 600; }
+    .stats { display: flex; gap: 24px; margin: 24px 0; }
+    .stat { text-align: center; flex: 1; }
+    .stat-value { font-size: 28px; font-weight: 800; color: #0a1929; }
+    .stat-label { font-size: 14px; opacity: 0.7; margin-top: 4px; }
+    .btn { background: #0a1929; color: white; border: none; padding: 16px; border-radius: 40px; font-weight: 700; width: 100%; cursor: pointer; margin-top: 16px; font-size: 16px; transition: 0.2s; }
+    .btn-outline { background: transparent; color: #0a1929; border: 1px solid #0a1929; }
+    .input-field { width: 100%; padding: 16px; background: rgba(255,255,255,0.7); border: 0.5px solid rgba(0,0,0,0.05); border-radius: 30px; margin-bottom: 12px; font-size: 16px; }
+    .back-link { margin-top: 20px; text-align: center; }
+    .back-link a { color: #0a1929; text-decoration: none; font-weight: 600; }
+  </style>
+</head>
+<body>
+<div class="glass-card">
+  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+    <h2 style="font-size: 28px;">👤 الملف الشخصي</h2>
+    <a href="index.html" style="color: #0a1929;"><i class="fas fa-arrow-right"></i> المتجر</a>
+  </div>
+  <div class="profile-header">
+    <div class="avatar-large" id="profileAvatar">👤</div>
+    <div><h2 id="profileName"></h2><p id="profileEmail"></p></div>
+  </div>
+  <div id="profileStats" class="stats"></div>
+  <div id="editSection" style="display: none;">
+    <input type="text" id="editName" class="input-field" placeholder="الاسم الكامل">
+    <input type="tel" id="editPhone" class="input-field" placeholder="رقم الهاتف">
+    <button class="btn" id="saveProfile">حفظ التغييرات</button>
+    <button class="btn btn-outline" id="cancelEdit">إلغاء</button>
+  </div>
+  <button class="btn" id="editProfileBtn">✏️ تعديل الملف</button>
+  <button class="btn" id="logoutBtn" style="background: #c0392b; margin-top: 12px;">🚪 تسجيل الخروج</button>
+  <div class="back-link"><a href="index.html">← العودة للمتجر</a></div>
+</div>
+<script>
+  (function(){
+    const STORAGE_CURRENT = 'teeshop_current';
+    const STORAGE_ORDERS = 'teeshop_orders_v2';
+    const STORAGE_USERS = 'teeshop_users';
+    
+    let currentUser = JSON.parse(localStorage.getItem(STORAGE_CURRENT));
+    if(!currentUser) { window.location.href = 'login.html'; return; }
 
+    const orders = JSON.parse(localStorage.getItem(STORAGE_ORDERS)) || [];
+    const userOrders = orders.filter(o => o.userId === currentUser.email);
+    const total = userOrders.length;
+    const pending = userOrders.filter(o => o.status === 'pending').length;
+    const spent = userOrders.reduce((s,o) => s + (o.total || 0), 0);
+
+    document.getElementById('profileAvatar').textContent = (currentUser.name || 'U').charAt(0).toUpperCase();
+    document.getElementById('profileName').textContent = currentUser.name || 'مستخدم';
+    document.getElementById('profileEmail').textContent = currentUser.email;
+    document.getElementById('profileStats').innerHTML = `
+      <div class="stat"><div class="stat-value">${total}</div><div class="stat-label">طلبات</div></div>
+      <div class="stat"><div class="stat-value">${pending}</div><div class="stat-label">معلقة</div></div>
+      <div class="stat"><div class="stat-value">${spent}</div><div class="stat-label">جنيه</div></div>
+    `;
+
+    document.getElementById('editProfileBtn').addEventListener('click', () => {
+      document.getElementById('editSection').style.display = 'block';
+      document.getElementById('editProfileBtn').style.display = 'none';
+      document.getElementById('editName').value = currentUser.name || '';
+      document.getElementById('editPhone').value = currentUser.phone || '';
+    });
+
+    document.getElementById('cancelEdit').addEventListener('click', () => {
+      document.getElementById('editSection').style.display = 'none';
+      document.getElementById('editProfileBtn').style.display = 'block';
+    });
+
+    document.getElementById('saveProfile').addEventListener('click', () => {
+      const newName = document.getElementById('editName').value.trim();
+      const newPhone = document.getElementById('editPhone').value.trim();
+      if(newName) currentUser.name = newName;
+      currentUser.phone = newPhone;
+      localStorage.setItem(STORAGE_CURRENT, JSON.stringify(currentUser));
+      
+      const users = JSON.parse(localStorage.getItem(STORAGE_USERS)) || [];
+      const idx = users.findIndex(u => u.email === currentUser.email);
+      if(idx !== -1) { users[idx].name = currentUser.name; users[idx].phone = currentUser.phone; }
+      localStorage.setItem(STORAGE_USERS, JSON.stringify(users));
+      
+      alert('✅ تم حفظ التغييرات');
+      location.reload();
+    });
+
+    document.getElementById('logoutBtn').addEventListener('click', () => {
+      if(typeof google !== 'undefined' && google.accounts && google.accounts.id) {
+        google.accounts.id.revoke(currentUser.email, () => { localStorage.removeItem(STORAGE_CURRENT); window.location.href = 'login.html'; });
+      } else { localStorage.removeItem(STORAGE_CURRENT); window.location.href = 'login.html'; }
+    });
+  })();
+</script>
+</body>
+</html>
