@@ -1,1 +1,16 @@
-
+[
+  {
+    "email": "admin@teeshop.com",
+    "password": "admin123",
+    "name": "المدير",
+    "role": "admin",
+    "phone": "0100000000"
+  },
+  {
+    "email": "user@demo.com",
+    "password": "123456",
+    "name": "أحمد",
+    "role": "user",
+    "phone": "0100000001"
+  }
+]
