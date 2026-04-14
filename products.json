@@ -1,167 +1,56 @@
 [
   {
-    "id": "1",
-    "name": "تيشيرت أبيض كلاسيك",
-    "originalPrice": 150,
-    "price": 120,
-    "description": "تيشيرت قطني مصري 100%، قصة مستقيمة، مثالي للإطلالات اليومية.",
-    "sizes": ["S", "M", "L", "XL", "XXL"],
-    "ages": ["15-18", "18+"],
+    "id": 1,
+    "name": "تيشيرت أساسي أبيض",
+    "price": 299,
     "category": "men",
-    "images": [
-      "https://images.pexels.com/photos/428338/pexels-photo-428338.jpeg?auto=compress&cs=tinysrgb&w=600"
-    ],
-    "stock": 25,
-    "active": true,
-    "isNew": false,
-    "isBestseller": true
+    "size": ["S", "M", "L", "XL"],
+    "image": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=300",
+    "description": "تيشيرت قطني 100%، مريح وعصري"
   },
   {
-    "id": "2",
+    "id": 2,
     "name": "تيشيرت أوفر سايز أسود",
-    "price": 180,
-    "originalPrice": 220,
-    "description": "تيشيرت أسود بقصة واسعة، قطن ثقيل، مظهر عصري وجريء.",
-    "sizes": ["M", "L", "XL", "XXL"],
-    "ages": ["16-20", "20+"],
+    "price": 349,
     "category": "men",
-    "images": [
-      "https://images.pexels.com/photos/1043474/pexels-photo-1043474.jpeg?auto=compress&cs=tinysrgb&w=600"
-    ],
-    "stock": 18,
-    "active": true,
-    "isNew": true,
-    "isBestseller": false
+    "size": ["M", "L", "XL", "XXL"],
+    "image": "https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=300",
+    "description": "تيشيرت أسود أوفر سايز، ملمس ناعم"
   },
   {
-    "id": "3",
-    "name": "تيشيرت بولو أزرق",
-    "price": 210,
-    "description": "تيشيرت بولو كلاسيكي بقصة عصرية، خامة بوليستر قطن، مثالي للدوام.",
-    "sizes": ["S", "M", "L", "XL"],
-    "ages": ["18+"],
+    "id": 3,
+    "name": "تيشيرت كلاسيك رمادي",
+    "price": 279,
     "category": "men",
-    "images": [
-      "https://images.pexels.com/photos/297933/pexels-photo-297933.jpeg?auto=compress&cs=tinysrgb&w=600"
-    ],
-    "stock": 15,
-    "active": true,
-    "isNew": false,
-    "isBestseller": true
+    "size": ["S", "M", "L", "XL"],
+    "image": "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=300",
+    "description": "تيشيرت رمادي كلاسيك، مزيج مريح"
   },
   {
-    "id": "4",
-    "name": "تيشيرت نسائي بيج",
-    "price": 160,
-    "originalPrice": 190,
-    "description": "تيشيرت نسائي قطن ناعم، ملمس مريح، مناسب لجميع الأوقات.",
-    "sizes": ["XS", "S", "M", "L"],
-    "ages": ["18+"],
+    "id": 4,
+    "name": "تيشيرت نسائي وردي",
+    "price": 319,
     "category": "women",
-    "images": [
-      "https://images.pexels.com/photos/2065195/pexels-photo-2065195.jpeg?auto=compress&cs=tinysrgb&w=600"
-    ],
-    "stock": 22,
-    "active": true,
-    "isNew": true,
-    "isBestseller": false
+    "size": ["XS", "S", "M", "L"],
+    "image": "https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=300",
+    "description": "تيشيرت وردي بقصة أنثوية جذابة"
   },
   {
-    "id": "5",
-    "name": "تيشيرت أبيض نسائي",
-    "price": 140,
-    "description": "تيشيرت أبيض أساسي بقصة أنثوية، سهل التنسيق.",
-    "sizes": ["S", "M", "L"],
-    "ages": ["15-18", "18+"],
+    "id": 5,
+    "name": "تيشيرت Crop أبيض",
+    "price": 289,
     "category": "women",
-    "images": [
-      "https://images.pexels.com/photos/1926769/pexels-photo-1926769.jpeg?auto=compress&cs=tinysrgb&w=600"
-    ],
-    "stock": 30,
-    "active": true,
-    "isNew": false,
-    "isBestseller": true
+    "size": ["XS", "S", "M"],
+    "image": "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=300",
+    "description": "تيشيرت كروب أبيض عصري"
   },
   {
-    "id": "6",
-    "name": "تيشيرت جرافيك شبابي",
-    "price": 200,
-    "originalPrice": 250,
-    "description": "تيشيرت بطباعة جرافيك عصرية، ألوان ثابتة، لمن يبحث عن التميز.",
-    "sizes": ["M", "L", "XL", "XXL"],
-    "ages": ["16-20", "20+"],
-    "category": "men",
-    "images": [
-      "https://images.pexels.com/photos/1598507/pexels-photo-1598507.jpeg?auto=compress&cs=tinysrgb&w=600"
-    ],
-    "stock": 12,
-    "active": true,
-    "isNew": true,
-    "isBestseller": false
-  },
-  {
-    "id": "7",
-    "name": "تيشيرت سادة وردي",
-    "price": 150,
-    "description": "تيشيرت وردي ناعم، قطن 100%، مريح للارتداء اليومي.",
-    "sizes": ["S", "M", "L"],
-    "ages": ["18+"],
+    "id": 6,
+    "name": "بلوزة أنيقة بيج",
+    "price": 359,
     "category": "women",
-    "images": [
-      "https://images.pexels.com/photos/985635/pexels-photo-985635.jpeg?auto=compress&cs=tinysrgb&w=600"
-    ],
-    "stock": 20,
-    "active": true,
-    "isNew": false,
-    "isBestseller": false
-  },
-  {
-    "id": "8",
-    "name": "تيشيرت رياضي رجالي",
-    "price": 190,
-    "description": "تيشيرت رياضي بخامة تقنية لامتصاص العرق، مثالي للتمارين.",
-    "sizes": ["M", "L", "XL"],
-    "ages": ["16-20", "20+"],
-    "category": "men",
-    "images": [
-      "https://images.pexels.com/photos/2291003/pexels-photo-2291003.jpeg?auto=compress&cs=tinysrgb&w=600"
-    ],
-    "stock": 17,
-    "active": true,
-    "isNew": true,
-    "isBestseller": false
-  },
-  {
-    "id": "9",
-    "name": "تيشيرت أبيض مطبوع",
-    "price": 170,
-    "originalPrice": 200,
-    "description": "تيشيرت أبيض بطبعة ناعمة، مظهر بسيط وأنيق.",
-    "sizes": ["S", "M", "L", "XL"],
-    "ages": ["15-18", "18+"],
-    "category": "women",
-    "images": [
-      "https://images.pexels.com/photos/2065200/pexels-photo-2065200.jpeg?auto=compress&cs=tinysrgb&w=600"
-    ],
-    "stock": 14,
-    "active": true,
-    "isNew": false,
-    "isBestseller": true
-  },
-  {
-    "id": "10",
-    "name": "تيشيرت بيزك رمادي",
-    "price": 130,
-    "description": "تيشيرت رمادي أساسي، قصة كلاسيكية، قطعة لا غنى عنها.",
-    "sizes": ["S", "M", "L", "XL", "XXL"],
-    "ages": ["15-18", "18+"],
-    "category": "men",
-    "images": [
-      "https://images.pexels.com/photos/6311294/pexels-photo-6311294.jpeg?auto=compress&cs=tinysrgb&w=600"
-    ],
-    "stock": 28,
-    "active": true,
-    "isNew": false,
-    "isBestseller": true
+    "size": ["S", "M", "L", "XL"],
+    "image": "https://images.unsplash.com/photo-1564257631407-4deb1f99d992?w=300",
+    "description": "بلوزة بيج أنيقة للمناسبات"
   }
 ]
