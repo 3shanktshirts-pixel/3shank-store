@@ -8,9 +8,9 @@
   },
   {
     "email": "user@demo.com",
-    "password": "admin12345",
-    "name": "admin2",
-    "role": "admin",
+    "password": "123456",
+    "name": "أحمد محمد",
+    "role": "user",
     "phone": "01012345678"
   }
 ]
