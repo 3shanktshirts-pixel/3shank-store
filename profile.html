@@ -1,420 +1,145 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" class="dark">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <title>الملف الشخصي · عشانك</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "error-container": "#ffdad6", "on-surface": "#1a1c1f", "inverse-surface": "#2e3034",
+            "on-secondary-fixed": "#1c1b1b", "tertiary-container": "#592300", "surface-bright": "#f9f9fe",
+            "on-tertiary-fixed-variant": "#723610", "surface-container": "#ededf2", "on-secondary-container": "#636262",
+            "surface-container-high": "#e8e8ed", "secondary": "#5f5e5e", "on-background": "#1a1c1f",
+            "on-error": "#ffffff", "on-tertiary-container": "#d8885c", "surface-container-low": "#f3f3f8",
+            "primary-fixed-dim": "#a7c8ff", "primary": "#001e40", "on-primary-fixed-variant": "#1f477b",
+            "surface": "#f9f9fe", "on-secondary": "#ffffff", "on-error-container": "#93000a",
+            "surface-dim": "#d9dade", "outline": "#737780", "tertiary": "#381300",
+            "secondary-container": "#e2dfde", "error": "#ba1a1a", "tertiary-fixed-dim": "#ffb690",
+            "surface-container-lowest": "#ffffff", "primary-container": "#003366", "on-secondary-fixed-variant": "#474746",
+            "on-primary": "#ffffff", "tertiary-fixed": "#ffdbca", "outline-variant": "#c3c6d1",
+            "inverse-on-surface": "#f0f0f5", "primary-fixed": "#d5e3ff", "on-tertiary-fixed": "#341100",
+            "surface-tint": "#3a5f94", "on-primary-container": "#799dd6", "on-surface-variant": "#43474f",
+            "on-primary-fixed": "#001b3c", "secondary-fixed": "#e5e2e1", "inverse-primary": "#a7c8ff",
+            "background": "#f9f9fe", "secondary-fixed-dim": "#c8c6c5", "surface-container-highest": "#e2e2e7",
+            "surface-variant": "#e2e2e7", "on-tertiary": "#ffffff"
+          },
+          borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+          fontFamily: { "headline": ["Plus Jakarta Sans"], "body": ["Inter"], "label": ["Inter"] }
+        }
+      }
+    }
+  </script>
+  
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    
-    body {
-      font-family: 'Inter', sans-serif;
-      background: linear-gradient(145deg, #f5f7fa 0%, #ffffff 100%);
-      color: #0a1929;
-      min-height: 100vh;
-      padding: 20px;
-    }
-    
-    :root {
-      --primary: #0a1929;
-      --primary-light: #1e3a5f;
-      --accent: #c0392b;
-      --white: #ffffff;
-      --shadow: 0 15px 40px -12px rgba(10, 25, 41, 0.12);
-      --border-light: 1px solid rgba(10, 25, 41, 0.08);
-    }
-
-    .top-bar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 16px 0;
-      margin-bottom: 24px;
-    }
-
-    .back-btn {
-      background: var(--white);
-      border: var(--border-light);
-      width: 48px;
-      height: 48px;
-      border-radius: 48px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--primary);
-      font-size: 20px;
-      cursor: pointer;
-      transition: 0.2s;
-      box-shadow: var(--shadow);
-      text-decoration: none;
-    }
-
-    .back-btn:hover {
-      background: var(--primary);
-      color: white;
-    }
-
-    .page-title {
-      font-size: 28px;
-      font-weight: 800;
-      color: var(--primary);
-      letter-spacing: -0.5px;
-    }
-
-    .container {
-      max-width: 700px;
-      margin: 0 auto;
-    }
-
-    /* بطاقة الملف الشخصي */
-    .profile-card {
-      background: var(--white);
-      border-radius: 40px;
-      padding: 36px 30px;
-      box-shadow: var(--shadow);
-      border: var(--border-light);
-      margin-bottom: 24px;
-    }
-
-    .profile-header {
-      display: flex;
-      align-items: center;
-      gap: 28px;
-      margin-bottom: 36px;
-    }
-
-    .avatar-large {
-      width: 110px;
-      height: 110px;
-      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-      border-radius: 55px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 44px;
-      font-weight: 700;
-      box-shadow: 0 12px 24px rgba(10, 25, 41, 0.25);
-    }
-
-    .profile-info h2 {
-      font-size: 28px;
-      font-weight: 700;
-      color: var(--primary);
-      margin-bottom: 6px;
-    }
-
-    .profile-info p {
-      font-size: 16px;
-      opacity: 0.7;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .profile-info i {
-      color: var(--primary);
-      width: 20px;
-    }
-
-    /* الإحصائيات */
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      margin-bottom: 32px;
-    }
-
-    .stat-card {
-      background: #f8fafc;
-      border-radius: 24px;
-      padding: 20px;
-      text-align: center;
-      border: var(--border-light);
-    }
-
-    .stat-icon {
-      font-size: 28px;
-      color: var(--primary);
-      margin-bottom: 8px;
-    }
-
-    .stat-value {
-      font-size: 32px;
-      font-weight: 800;
-      color: var(--primary);
-      line-height: 1.2;
-    }
-
-    .stat-label {
-      font-size: 14px;
-      opacity: 0.65;
-      margin-top: 4px;
-    }
-
-    /* نموذج التعديل */
-    .edit-section {
-      background: #f8fafc;
-      border-radius: 28px;
-      padding: 24px;
-      margin-top: 24px;
-    }
-
-    .input-group {
-      margin-bottom: 18px;
-    }
-
-    .input-label {
-      display: block;
-      font-weight: 600;
-      margin-bottom: 8px;
-      color: var(--primary);
-      font-size: 14px;
-    }
-
-    .input-field {
-      width: 100%;
-      padding: 16px 18px;
-      background: var(--white);
-      border: 1.5px solid rgba(10, 25, 41, 0.1);
-      border-radius: 24px;
-      font-size: 16px;
-      transition: 0.2s;
-      font-family: inherit;
-    }
-
-    .input-field:focus {
-      outline: none;
-      border-color: var(--primary);
-    }
-
-    .input-field:disabled {
-      background: #eef2f6;
-      opacity: 0.7;
-    }
-
-    .btn {
-      padding: 16px 24px;
-      border: none;
-      border-radius: 48px;
-      font-weight: 700;
-      font-size: 16px;
-      cursor: pointer;
-      transition: 0.2s;
-      width: 100%;
-    }
-
-    .btn-primary {
-      background: var(--primary);
-      color: white;
-      box-shadow: 0 8px 20px rgba(10, 25, 41, 0.25);
-    }
-
-    .btn-primary:hover {
-      background: var(--primary-light);
-      transform: scale(0.98);
-    }
-
-    .btn-outline {
-      background: transparent;
-      color: var(--primary);
-      border: 1.5px solid var(--primary);
-      margin-top: 12px;
-    }
-
-    .btn-outline:hover {
-      background: var(--primary);
-      color: white;
-    }
-
-    .btn-danger {
-      background: var(--accent);
-      color: white;
-      margin-top: 16px;
-    }
-
-    .btn-danger:hover {
-      background: #a93226;
-    }
-
-    .action-buttons {
-      display: flex;
-      gap: 12px;
-      margin-top: 24px;
-    }
-
-    .action-buttons .btn {
-      flex: 1;
-    }
-
-    /* سجل الطلبات */
-    .orders-history {
-      background: var(--white);
-      border-radius: 40px;
-      padding: 28px;
-      box-shadow: var(--shadow);
-      border: var(--border-light);
-    }
-
-    .section-title {
-      font-size: 22px;
-      font-weight: 700;
-      color: var(--primary);
-      margin-bottom: 20px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .order-history-item {
-      background: #f8fafc;
-      border-radius: 20px;
-      padding: 18px;
-      margin-bottom: 12px;
-      border: var(--border-light);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .order-info h4 {
-      font-weight: 700;
-      color: var(--primary);
-      margin-bottom: 4px;
-    }
-
-    .order-info p {
-      font-size: 13px;
-      opacity: 0.6;
-    }
-
-    .order-status {
-      padding: 6px 14px;
-      border-radius: 30px;
-      font-size: 13px;
-      font-weight: 600;
-    }
-
-    .status-pending {
-      background: rgba(241, 196, 15, 0.15);
-      color: #b7950b;
-    }
-
-    .status-completed {
-      background: rgba(39, 174, 96, 0.15);
-      color: #1e8449;
-    }
-
-    .status-cancelled {
-      background: rgba(192, 57, 43, 0.15);
-      color: var(--accent);
-    }
-
-    .order-amount {
-      font-weight: 700;
-      color: var(--primary);
-    }
-
-    .empty-state {
-      text-align: center;
-      padding: 40px;
-      opacity: 0.5;
-    }
-
-    .empty-state i {
-      font-size: 48px;
-      margin-bottom: 16px;
+    .glass-nav {
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
     }
   </style>
 </head>
-<body>
+<body class="bg-background font-body text-on-surface antialiased pb-24">
 
-<div class="container">
-  <!-- الشريط العلوي -->
-  <div class="top-bar">
-    <a href="index.html" class="back-btn"><i class="fas fa-arrow-right"></i></a>
-    <h1 class="page-title">الملف الشخصي</h1>
-    <div style="width: 48px;"></div>
+<!-- الهيدر -->
+<header class="glass-nav sticky top-0 z-30 py-4 px-4 border-b border-outline-variant">
+  <div class="max-w-screen-2xl mx-auto flex items-center justify-between">
+    <a href="index.html" class="w-11 h-11 rounded-full bg-surface-container-high flex items-center justify-center hover:bg-surface-container-highest transition-colors">
+      <i class="fas fa-arrow-right text-lg text-primary"></i>
+    </a>
+    <h1 class="font-headline text-2xl font-bold text-primary">الملف الشخصي</h1>
+    <div class="w-11"></div>
   </div>
+</header>
 
+<div class="max-w-2xl mx-auto px-4 py-6">
+  
   <!-- بطاقة الملف الشخصي -->
-  <div class="profile-card">
-    <div class="profile-header">
-      <div class="avatar-large" id="profileAvatar">👤</div>
-      <div class="profile-info">
-        <h2 id="profileName">أحمد محمد</h2>
-        <p><i class="fas fa-envelope"></i> <span id="profileEmail">user@demo.com</span></p>
-        <p><i class="fas fa-phone"></i> <span id="profilePhone">غير محدد</span></p>
+  <div class="bg-surface rounded-[2.5rem] p-6 shadow-[0_10px_30px_rgba(0,30,64,0.08)] border border-white/20 mb-6">
+    <div class="flex items-center gap-5 mb-6">
+      <div class="w-24 h-24 bg-primary rounded-full flex items-center justify-center shadow-lg">
+        <span class="text-4xl font-bold text-white" id="profileAvatar">👤</span>
+      </div>
+      <div>
+        <h2 class="font-headline text-2xl font-bold text-primary" id="profileName">أحمد محمد</h2>
+        <p class="text-on-surface/60 flex items-center gap-1 mt-1">
+          <i class="fas fa-envelope text-sm"></i>
+          <span id="profileEmail">user@demo.com</span>
+        </p>
+        <p class="text-on-surface/60 flex items-center gap-1 mt-1">
+          <i class="fas fa-phone text-sm"></i>
+          <span id="profilePhone">غير محدد</span>
+        </p>
       </div>
     </div>
 
     <!-- الإحصائيات -->
-    <div class="stats-grid">
-      <div class="stat-card">
-        <div class="stat-icon"><i class="fas fa-shopping-bag"></i></div>
-        <div class="stat-value" id="totalOrders">0</div>
-        <div class="stat-label">إجمالي الطلبات</div>
+    <div class="grid grid-cols-3 gap-3 mb-6">
+      <div class="bg-surface-container-low rounded-2xl p-4 text-center">
+        <i class="fas fa-shopping-bag text-2xl text-primary mb-2"></i>
+        <div class="font-headline text-2xl font-bold text-primary" id="totalOrders">0</div>
+        <div class="text-xs text-on-surface/60">طلبات</div>
       </div>
-      <div class="stat-card">
-        <div class="stat-icon"><i class="fas fa-clock"></i></div>
-        <div class="stat-value" id="pendingOrders">0</div>
-        <div class="stat-label">قيد الانتظار</div>
+      <div class="bg-surface-container-low rounded-2xl p-4 text-center">
+        <i class="fas fa-clock text-2xl text-primary mb-2"></i>
+        <div class="font-headline text-2xl font-bold text-primary" id="pendingOrders">0</div>
+        <div class="text-xs text-on-surface/60">معلقة</div>
       </div>
-      <div class="stat-card">
-        <div class="stat-icon"><i class="fas fa-money-bill"></i></div>
-        <div class="stat-value" id="totalSpent">0</div>
-        <div class="stat-label">جنيه مصري</div>
+      <div class="bg-surface-container-low rounded-2xl p-4 text-center">
+        <i class="fas fa-money-bill text-2xl text-primary mb-2"></i>
+        <div class="font-headline text-2xl font-bold text-primary" id="totalSpent">0</div>
+        <div class="text-xs text-on-surface/60">جنيه</div>
       </div>
     </div>
 
     <!-- نموذج التعديل -->
     <div id="editSection" style="display: none;">
-      <div class="edit-section">
-        <div class="input-group">
-          <label class="input-label">الاسم الكامل</label>
-          <input type="text" id="editName" class="input-field" placeholder="الاسم الكامل">
-        </div>
-        <div class="input-group">
-          <label class="input-label">رقم الهاتف</label>
-          <input type="tel" id="editPhone" class="input-field" placeholder="رقم الهاتف">
-        </div>
-        <div class="input-group">
-          <label class="input-label">البريد الإلكتروني</label>
-          <input type="email" id="editEmail" class="input-field" disabled>
-        </div>
-        <div class="action-buttons">
-          <button class="btn btn-primary" id="saveProfileBtn">حفظ التغييرات</button>
-          <button class="btn btn-outline" id="cancelEditBtn">إلغاء</button>
-        </div>
+      <div class="bg-surface-container-low rounded-2xl p-4 mb-4">
+        <input type="text" id="editName" class="w-full p-4 bg-surface rounded-full border-none mb-3 font-body" placeholder="الاسم الكامل">
+        <input type="tel" id="editPhone" class="w-full p-4 bg-surface rounded-full border-none mb-3 font-body" placeholder="رقم الهاتف">
+        <input type="email" id="editEmail" class="w-full p-4 bg-surface rounded-full border-none font-body" disabled>
+      </div>
+      <div class="flex gap-3">
+        <button id="saveProfileBtn" class="flex-1 bg-primary text-white py-4 rounded-full font-headline font-semibold hover:shadow-lg transition-all active:scale-95">
+          حفظ التغييرات
+        </button>
+        <button id="cancelEditBtn" class="flex-1 bg-surface-container-high text-on-surface py-4 rounded-full font-headline font-semibold hover:bg-surface-container-highest transition-all">
+          إلغاء
+        </button>
       </div>
     </div>
 
-    <button class="btn btn-primary" id="editProfileBtn">
-      <i class="fas fa-pen"></i> تعديل الملف الشخصي
+    <button id="editProfileBtn" class="w-full bg-primary text-white py-4 rounded-full font-headline font-semibold text-lg hover:shadow-lg transition-all active:scale-95">
+      <i class="fas fa-pen mr-2"></i> تعديل الملف الشخصي
     </button>
-    <button class="btn btn-danger" id="logoutBtn">
-      <i class="fas fa-sign-out-alt"></i> تسجيل الخروج
+    
+    <button id="logoutBtn" class="w-full bg-error-container text-error py-4 rounded-full font-headline font-semibold text-lg hover:bg-error/10 transition-all active:scale-95 mt-3">
+      <i class="fas fa-sign-out-alt mr-2"></i> تسجيل الخروج
     </button>
   </div>
 
   <!-- سجل الطلبات -->
-  <div class="orders-history">
-    <div class="section-title">
-      <i class="fas fa-history"></i>
-      <span>سجل الطلبات</span>
-    </div>
-    <div id="ordersHistoryList">
-      <div class="empty-state">
-        <i class="fas fa-box-open"></i>
-        <p>لا توجد طلبات سابقة</p>
-      </div>
-    </div>
+  <div class="bg-surface rounded-[2.5rem] p-6 shadow-[0_10px_30px_rgba(0,30,64,0.08)] border border-white/20">
+    <h3 class="font-headline text-xl font-bold text-primary mb-4 flex items-center gap-2">
+      <i class="fas fa-history"></i> سجل الطلبات
+    </h3>
+    <div id="ordersHistoryList"></div>
   </div>
 </div>
+
+<!-- رسائل التنبيه -->
+<div id="toastMessage" class="fixed bottom-24 left-1/2 -translate-x-1/2 bg-on-surface text-white px-6 py-3 rounded-full shadow-lg z-50 opacity-0 transition-opacity duration-300 pointer-events-none whitespace-nowrap"></div>
 
 <script>
   (function() {
@@ -431,23 +156,27 @@
     const orders = JSON.parse(localStorage.getItem(STORAGE_ORDERS)) || [];
     const userOrders = orders.filter(o => o.userId === currentUser.email);
 
-    // تحديث واجهة المستخدم
+    function showToast(msg) {
+      const toast = document.getElementById('toastMessage');
+      toast.textContent = msg;
+      toast.style.opacity = '1';
+      setTimeout(() => toast.style.opacity = '0', 2500);
+    }
+
     function updateUI() {
       document.getElementById('profileAvatar').textContent = (currentUser.name || 'U').charAt(0).toUpperCase();
       document.getElementById('profileName').textContent = currentUser.name || 'مستخدم';
       document.getElementById('profileEmail').textContent = currentUser.email;
       document.getElementById('profilePhone').textContent = currentUser.phone || 'غير محدد';
 
-      // الإحصائيات
       const total = userOrders.length;
       const pending = userOrders.filter(o => o.status === 'pending').length;
-      const spent = userOrders.reduce((sum, o) => sum + (o.total || 0), 0);
+      const spent = userOrders.reduce((s, o) => s + (o.total || 0), 0);
 
       document.getElementById('totalOrders').textContent = total;
       document.getElementById('pendingOrders').textContent = pending;
       document.getElementById('totalSpent').textContent = spent;
 
-      // سجل الطلبات
       renderOrdersHistory();
     }
 
@@ -455,39 +184,32 @@
       const container = document.getElementById('ordersHistoryList');
       
       if (userOrders.length === 0) {
-        container.innerHTML = `
-          <div class="empty-state">
-            <i class="fas fa-box-open"></i>
-            <p>لا توجد طلبات سابقة</p>
-          </div>
-        `;
+        container.innerHTML = '<div class="text-center py-8 text-on-surface/50"><i class="fas fa-box-open text-4xl mb-3 opacity-30"></i><p>لا توجد طلبات سابقة</p></div>';
         return;
       }
 
-      const sortedOrders = [...userOrders].reverse();
-      
-      container.innerHTML = sortedOrders.map(order => {
-        const statusClass = order.status === 'pending' ? 'status-pending' : 
-                           order.status === 'cancelled' ? 'status-cancelled' : 'status-completed';
+      const sorted = [...userOrders].reverse();
+      container.innerHTML = sorted.map(order => {
+        const statusClass = order.status === 'pending' ? 'text-yellow-600 bg-yellow-50' : 
+                           order.status === 'cancelled' ? 'text-error bg-error-container' : 'text-green-600 bg-green-50';
         const statusText = order.status === 'pending' ? '⏳ قيد الانتظار' : 
                           order.status === 'cancelled' ? '❌ ملغي' : '✅ مكتمل';
         
         return `
-          <div class="order-history-item">
-            <div class="order-info">
-              <h4>طلب #${order.id.toString().slice(-6)}</h4>
-              <p>${new Date(order.createdAt).toLocaleDateString('ar-EG')}</p>
+          <div class="flex justify-between items-center p-4 bg-surface-container-low rounded-2xl mb-3">
+            <div>
+              <h4 class="font-bold">طلب #${order.id.toString().slice(-6)}</h4>
+              <p class="text-xs text-on-surface/60">${new Date(order.createdAt).toLocaleDateString('ar-EG')}</p>
             </div>
-            <div style="text-align: left;">
-              <span class="order-status ${statusClass}">${statusText}</span>
-              <p class="order-amount" style="margin-top: 6px;">${order.total} ج.م</p>
+            <div class="text-left">
+              <span class="px-3 py-1 rounded-full text-xs font-medium ${statusClass}">${statusText}</span>
+              <p class="font-bold text-primary mt-1">${order.total} ج.م</p>
             </div>
           </div>
         `;
       }).join('');
     }
 
-    // تعديل الملف الشخصي
     document.getElementById('editProfileBtn').addEventListener('click', () => {
       document.getElementById('editSection').style.display = 'block';
       document.getElementById('editProfileBtn').style.display = 'none';
@@ -507,7 +229,7 @@
       const newPhone = document.getElementById('editPhone').value.trim();
 
       if (!newName) {
-        alert('الاسم مطلوب');
+        showToast('الاسم مطلوب');
         return;
       }
 
@@ -515,50 +237,33 @@
       currentUser.phone = newPhone;
       localStorage.setItem(STORAGE_CURRENT, JSON.stringify(currentUser));
 
-      // تحديث في users
       const users = JSON.parse(localStorage.getItem(STORAGE_USERS)) || [];
-      const userIndex = users.findIndex(u => u.email === currentUser.email);
-      if (userIndex !== -1) {
-        users[userIndex].name = newName;
-        users[userIndex].phone = newPhone;
+      const idx = users.findIndex(u => u.email === currentUser.email);
+      if (idx !== -1) {
+        users[idx].name = newName;
+        users[idx].phone = newPhone;
         localStorage.setItem(STORAGE_USERS, JSON.stringify(users));
       }
 
       updateUI();
       document.getElementById('editSection').style.display = 'none';
       document.getElementById('editProfileBtn').style.display = 'block';
-      
-      showToast('✅ تم حفظ التغييرات بنجاح');
+      showToast('✅ تم حفظ التغييرات');
     });
 
-    // تسجيل الخروج
     document.getElementById('logoutBtn').addEventListener('click', () => {
-      if (confirm('هل أنت متأكد من تسجيل الخروج؟')) {
-        if (typeof google !== 'undefined' && google.accounts && google.accounts.id) {
-          google.accounts.id.revoke(currentUser.email, () => {
-            localStorage.removeItem(STORAGE_CURRENT);
-            window.location.href = 'login.html';
-          });
-        } else {
+      if (!confirm('هل أنت متأكد من تسجيل الخروج؟')) return;
+      
+      if (typeof google !== 'undefined' && google.accounts?.id) {
+        google.accounts.id.revoke(currentUser.email, () => {
           localStorage.removeItem(STORAGE_CURRENT);
           window.location.href = 'login.html';
-        }
+        });
+      } else {
+        localStorage.removeItem(STORAGE_CURRENT);
+        window.location.href = 'login.html';
       }
     });
-
-    function showToast(msg) {
-      const toast = document.createElement('div');
-      toast.textContent = msg;
-      toast.style.cssText = `
-        position: fixed; bottom: 30px; right: 30px;
-        background: #0a1929; color: white;
-        padding: 14px 28px; border-radius: 60px;
-        z-index: 1000; font-weight: 500;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-      `;
-      document.body.appendChild(toast);
-      setTimeout(() => toast.remove(), 3000);
-    }
 
     updateUI();
   })();
