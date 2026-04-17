@@ -531,8 +531,8 @@
       container.innerHTML = filtered.map(p => {
         const hasDiscount = p.originalPrice && p.originalPrice > p.price;
         return `
-          <div class="product-card group cursor-pointer animate-fade-in" onclick="openProductModal('${p.id}')" style="animation-delay: ${Math.random() * 0.3}s">
-            <div class="relative aspect-[4/5] rounded-[2.5rem] overflow-hidden mb-4 bg-surface-container-high shadow-xl">
+          <div class="product-card group cursor-pointer animate-fade-in" style="animation-delay: ${Math.random() * 0.3}s">
+            <div class="relative aspect-[4/5] rounded-[2.5rem] overflow-hidden mb-4 bg-surface-container-high shadow-xl" onclick="openProductModal('${p.id}')">
               <img src="${p.images[0]}" alt="${p.name}" class="w-full h-full object-cover" loading="lazy">
               <div class="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
               <button class="absolute top-4 left-4 w-12 h-12 bg-white/80 backdrop-blur-md rounded-full flex items-center justify-center shadow-lg hover:bg-error hover:text-white transition-all z-10" onclick="event.stopPropagation()">
@@ -541,19 +541,52 @@
               ${p.isNew ? '<span class="absolute top-4 right-4 bg-primary text-white text-xs font-black px-4 py-1.5 rounded-full shadow-lg z-10">جديد</span>' : ''}
               ${hasDiscount ? `<span class="absolute bottom-4 right-4 bg-error text-white text-sm font-black px-4 py-1.5 rounded-full shadow-lg z-10">-${Math.round((1-p.price/p.originalPrice)*100)}%</span>` : ''}
             </div>
-            <div class="flex items-center gap-1 mb-2">
+            <div class="flex items-center gap-1 mb-2" onclick="openProductModal('${p.id}')">
               <span class="text-sm text-outline">${p.brand}</span>
               <span class="text-sm text-accent ml-auto flex items-center gap-1"><i class="fas fa-star text-xs"></i> ${p.rating}</span>
             </div>
-            <h4 class="font-headline font-bold text-xl text-on-surface mb-2 line-clamp-1">${p.name}</h4>
-            <div class="flex items-center gap-3">
-              <span class="font-headline font-black text-2xl text-primary">${p.price} ج.م</span>
-              ${hasDiscount ? `<span class="text-sm text-outline line-through">${p.originalPrice} ج.م</span>` : ''}
+            <h4 class="font-headline font-bold text-xl text-on-surface mb-2 line-clamp-1" onclick="openProductModal('${p.id}')">${p.name}</h4>
+            <div class="flex items-center justify-between gap-3">
+              <div class="flex items-center gap-3">
+                <span class="font-headline font-black text-2xl text-primary">${p.price} ج.م</span>
+                ${hasDiscount ? `<span class="text-sm text-outline line-through">${p.originalPrice} ج.م</span>` : ''}
+              </div>
+              <button class="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center shadow-lg hover:scale-110 transition-all active:scale-95" onclick="event.stopPropagation(); quickAddToCart('${p.id}')" title="إضافة سريعة">
+                <i class="fas fa-plus text-xl"></i>
+              </button>
             </div>
           </div>
         `;
       }).join('');
     }
+
+    // ========== الإضافة السريعة ==========
+    window.quickAddToCart = (id) => {
+      const p = products.find(x => x.id === id);
+      if (!p) return;
+      
+      const defaultSize = p.sizes[0];
+      const defaultAge = p.ages[0];
+      
+      const existing = cart.find(i => i.productId === p.id && i.size === defaultSize && i.age === defaultAge);
+      if (existing) {
+        existing.quantity += 1;
+      } else {
+        cart.push({
+          productId: p.id,
+          name: p.name,
+          price: p.price,
+          size: defaultSize,
+          age: defaultAge,
+          quantity: 1,
+          image: p.images[0]
+        });
+      }
+      
+      saveCart();
+      showToast(`✅ تمت إضافة "${p.name}" إلى السلة`);
+      confetti({ particleCount: 30, spread: 50, origin: { y: 0.7 } });
+    };
 
     // ========== مودال المنتج ==========
     window.openProductModal = (id) => {
